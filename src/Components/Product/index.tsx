@@ -1,18 +1,36 @@
 import Tag from '../Tag'
 import * as S from './styles'
 
-const Product = () => (
+type Props = {
+  title: string
+  category: string
+  system: string
+  description: string
+  infos: string[]
+  image: string
+}
+
+const Product = ({
+  category,
+  description,
+  image,
+  infos,
+  system,
+  title
+}: Props) => (
   <S.Card>
-    <img src="https://via.placeholder.com/222x250" alt="" />
-    <S.Titulo>Nome do jogo</S.Titulo>
-    <Tag size="small">Categoria</Tag>
-    <Tag size="small">Windows</Tag>
-    <S.Descricao>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-      numquam architecto, explicabo soluta, magnam expedita deleniti et dicta
-      impedit fugit id unde dolor non voluptatibus inventore provident iste?
-      Reiciendis, voluptas.
-    </S.Descricao>
+    <img src={image} alt={title} />
+    <S.Infos>
+      {infos.map((info) => (
+        <Tag size="small" key={info}>
+          {info}
+        </Tag>
+      ))}
+    </S.Infos>
+    <S.Titulo>{title}</S.Titulo>
+    <Tag size="small">{category}</Tag>
+    <Tag size="small">{system}</Tag>
+    <S.Descricao>{description}</S.Descricao>
   </S.Card>
 )
 
