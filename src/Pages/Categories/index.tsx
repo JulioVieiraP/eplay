@@ -1,4 +1,3 @@
-import Banner from '../../Components/Banner'
 import ProductsList from '../../Components/ProductsList'
 import Game from '../../Models/Game'
 
@@ -93,12 +92,13 @@ const emBreve: Game[] = [
   }
 ]
 
-const Home = () => (
+const Categories = () => (
   <>
-    <Banner />
-    <ProductsList games={promocoes} title="Promoções" background="gray" />
-    <ProductsList games={emBreve} title="Em breve" background="black" />
+    <ProductsList games={promocoes} title="RPG" background="gray" />
+    <ProductsList games={emBreve} title="Ação" background="black" />
+    <ProductsList games={emBreve} title="Aventura" background="gray" />
+    <ProductsList games={emBreve} title="Fps" background="black" />
   </>
 )
 
-export default Home
+export default Categories
