@@ -7,11 +7,7 @@ import fechar from '../../assets/images/fechar.png'
 
 import * as S from './style'
 import { useState } from 'react'
-
-interface GalleryItem {
-  type: 'image' | 'video'
-  url: string
-}
+import { GalleryItem } from '../../Pages/Home'
 
 const mock: GalleryItem[] = [
   {
@@ -31,13 +27,14 @@ const mock: GalleryItem[] = [
 type Props = {
   defaultCover: string
   name: string
+  items: GalleryItem[]
 }
 
 interface ModalState extends GalleryItem {
   isVisible: boolean
 }
 
-const Gallery = ({ defaultCover, name }: Props) => {
+const Gallery = ({ defaultCover, name, items }: Props) => {
   const [modal, setModal] = useState<ModalState>({
     isVisible: false,
     type: 'image',
@@ -65,7 +62,7 @@ const Gallery = ({ defaultCover, name }: Props) => {
     <>
       <Section title="Galeria" background="black">
         <S.items>
-          {mock.map((item, index) => (
+          {items.map((item, index) => (
             <S.item
               key={index}
               onClick={() => {

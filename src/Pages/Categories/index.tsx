@@ -1,104 +1,45 @@
+import { useEffect, useState } from 'react'
 import ProductsList from '../../Components/ProductsList'
-import Game from '../../Models/Game'
 
-import resident from '../../assets/images/resident.png'
-import diablo from '../../assets/images/diablo.png'
-import zelda from '../../assets/images/zelda.png'
-import starWars from '../../assets/images/star_wars.png'
+import { Game } from '../Home'
 
-const promocoes: Game[] = [
-  {
-    id: 1,
-    title: 'Resident Evil 4 Remake',
-    category: 'Ação',
-    description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: resident
-  },
-  {
-    id: 2,
-    title: 'Diablo 4',
-    category: 'Ação',
-    description:
-      'Diablo IV é um RPG de ação em desenvolvimento pela Blizzard Entertainment.',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: diablo
-  },
-  {
-    id: 3,
-    title: 'zelda',
-    category: 'Ação',
-    description:
-      'Uma aventura épica pela terra e pelos céus de Hyrule aguarda em The Legend of Zelda™...',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: zelda
-  },
-  {
-    id: 4,
-    title: 'StarWars',
-    category: 'Ação',
-    description:
-      'Star Wars Jedi: Survivor é um próximo jogo de ação e aventura desenvolvido pela Respawn...',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: starWars
-  }
-]
+const Categories = () => {
+  const [gamesAcao, setGamesAcao] = useState<Game[]>([])
+  const [gamesEsportes, setGamesEsporte] = useState<Game[]>([])
+  const [gamesSimulacao, setGamesSimulacao] = useState<Game[]>([])
+  const [gamesluta, setGamesLuta] = useState<Game[]>([])
+  const [gamesrpg, setGamesRpg] = useState<Game[]>([])
 
-const emBreve: Game[] = [
-  {
-    id: 2,
-    title: 'Diablo 4',
-    category: 'Ação',
-    description:
-      'Diablo IV é um RPG de ação em desenvolvimento pela Blizzard Entertainment.',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: diablo
-  },
-  {
-    id: 3,
-    title: 'zelda',
-    category: 'Ação',
-    description:
-      'Uma aventura épica pela terra e pelos céus de Hyrule aguarda em The Legend of Zelda™...',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: zelda
-  },
-  {
-    id: 4,
-    title: 'StarWars',
-    category: 'Ação',
-    description:
-      'Star Wars Jedi: Survivor é um próximo jogo de ação e aventura desenvolvido pela Respawn...',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: starWars
-  },
-  {
-    id: 4,
-    title: 'StarWars',
-    category: 'Ação',
-    description:
-      'Star Wars Jedi: Survivor é um próximo jogo de ação e aventura desenvolvido pela Respawn...',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: starWars
-  }
-]
-
-const Categories = () => (
-  <>
-    <ProductsList games={promocoes} title="RPG" background="gray" />
-    <ProductsList games={emBreve} title="Ação" background="black" />
-    <ProductsList games={emBreve} title="Aventura" background="gray" />
-    <ProductsList games={emBreve} title="Fps" background="black" />
-  </>
-)
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/eplay/acao')
+      .then((res) => res.json())
+      .then((data) => setGamesAcao(data))
+    fetch('https://fake-api-tau.vercel.app/api/eplay/esportes')
+      .then((res) => res.json())
+      .then((data) => setGamesEsporte(data))
+    fetch('https://fake-api-tau.vercel.app/api/eplay/simulacao')
+      .then((res) => res.json())
+      .then((data) => setGamesSimulacao(data))
+    fetch('https://fake-api-tau.vercel.app/api/eplay/rpg')
+      .then((res) => res.json())
+      .then((data) => setGamesRpg(data))
+    fetch('https://fake-api-tau.vercel.app/api/eplay/luta')
+      .then((res) => res.json())
+      .then((data) => setGamesLuta(data))
+  }, [])
+  return (
+    <>
+      <ProductsList games={gamesAcao} title="Ação" background="black" />
+      <ProductsList games={gamesEsportes} title="Esportes" background="gray" />
+      <ProductsList games={gamesluta} title="Luta" background="black" />
+      <ProductsList games={gamesrpg} title="RPG" background="gray" />
+      <ProductsList
+        games={gamesSimulacao}
+        title="Simulação"
+        background="black"
+      />
+    </>
+  )
+}
 
 export default Categories

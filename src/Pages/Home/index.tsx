@@ -1,99 +1,49 @@
+import { useEffect, useState } from 'react'
 import Banner from '../../Components/Banner'
 import ProductsList from '../../Components/ProductsList'
-import Game from '../../Models/Game'
 
-import resident from '../../assets/images/resident.png'
-import diablo from '../../assets/images/diablo.png'
-import zelda from '../../assets/images/zelda.png'
-import starWars from '../../assets/images/star_wars.png'
+export interface GalleryItem {
+  type: 'image' | 'video'
+  url: string
+}
 
-const promocoes: Game[] = [
-  {
-    id: 1,
-    title: 'Resident Evil 4 Remake',
-    category: 'Ação',
-    description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: resident
-  },
-  {
-    id: 2,
-    title: 'Diablo 4',
-    category: 'Ação',
-    description:
-      'Diablo IV é um RPG de ação em desenvolvimento pela Blizzard Entertainment.',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: diablo
-  },
-  {
-    id: 3,
-    title: 'zelda',
-    category: 'Ação',
-    description:
-      'Uma aventura épica pela terra e pelos céus de Hyrule aguarda em The Legend of Zelda™...',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: zelda
-  },
-  {
-    id: 4,
-    title: 'StarWars',
-    category: 'Ação',
-    description:
-      'Star Wars Jedi: Survivor é um próximo jogo de ação e aventura desenvolvido pela Respawn...',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: starWars
+export type Game = {
+  id: number
+  name: string
+  description: string
+  release_date?: string
+  prices: {
+    discount?: number
+    old?: number
+    current?: number
   }
-]
-
-const emBreve: Game[] = [
-  {
-    id: 2,
-    title: 'Diablo 4',
-    category: 'Ação',
-    description:
-      'Diablo IV é um RPG de ação em desenvolvimento pela Blizzard Entertainment.',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: diablo
-  },
-  {
-    id: 3,
-    title: 'zelda',
-    category: 'Ação',
-    description:
-      'Uma aventura épica pela terra e pelos céus de Hyrule aguarda em The Legend of Zelda™...',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: zelda
-  },
-  {
-    id: 4,
-    title: 'StarWars',
-    category: 'Ação',
-    description:
-      'Star Wars Jedi: Survivor é um próximo jogo de ação e aventura desenvolvido pela Respawn...',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: starWars
-  },
-  {
-    id: 4,
-    title: 'StarWars',
-    category: 'Ação',
-    description:
-      'Star Wars Jedi: Survivor é um próximo jogo de ação e aventura desenvolvido pela Respawn...',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: starWars
+  details: {
+    category: string
+    system: string
+    developer: string
+    publisher: string
+    languages: string[]
   }
-]
+  media: {
+    thumbnail: string
+    cover: string
+    gallery: GalleryItem[]
+  }
+}
 
 const Home = () => {
+  const [promocoes, setPromocoes] = useState<Game[]>([])
+  const [emBreve, setEmbreve] = useState<Game[]>([])
+
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/eplay/promocoes')
+      .then((res) => res.json())
+      .then((data) => setPromocoes(data))
+
+    fetch('https://fake-api-tau.vercel.app/api/eplay/em-breve')
+      .then((res) => res.json())
+      .then((data) => setEmbreve(data))
+  }, [])
   return (
     <>
       <Banner />
