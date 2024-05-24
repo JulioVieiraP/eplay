@@ -93,12 +93,14 @@ const emBreve: Game[] = [
   }
 ]
 
-const Home = () => (
-  <>
-    <Banner />
-    <ProductsList games={promocoes} title="Promoções" background="gray" />
-    <ProductsList games={emBreve} title="Em breve" background="black" />
-  </>
-)
+const Home = () => {
+  return (
+    <>
+      <Banner />
+      <ProductsList games={promocoes} title="Promoções" background="gray" />
+      <ProductsList games={emBreve} title="Em breve" background="black" />
+    </>
+  )
+}
 
 export default Home
