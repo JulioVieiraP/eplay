@@ -1,5 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 import { cores } from './Variaveis'
+export const breakpoints = {
+  tablet: '768px',
+  desktop: '1024px'
+}
 
 const GlobalCss = createGlobalStyle`
   *{
@@ -21,7 +25,12 @@ const GlobalCss = createGlobalStyle`
     max-width: 1024px;
     width: 100%;
     margin: 0 auto;
+
+    @media (max-width: ${breakpoints.desktop}){
+      max-width: 80%;
+    }
   }
-  `
+
+`
 
 export default GlobalCss

@@ -43,10 +43,20 @@ const Home = () => {
     <>
       <Banner />
       {onSaleGames && (
-        <ProductsList games={onSaleGames} title="Promoções" background="gray" />
+        <ProductsList
+          games={onSaleGames}
+          title="Promoções"
+          background="gray"
+          id="on-Sale"
+        />
       )}
       {soonGames && (
-        <ProductsList games={soonGames} title="Em breve" background="black" />
+        <ProductsList
+          games={soonGames}
+          title="Em breve"
+          background="black"
+          id="coming-soon"
+        />
       )}
     </>
   )

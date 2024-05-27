@@ -3,6 +3,8 @@ import { cores } from '../../styles/Variaveis'
 
 export const items = styled.ul`
   display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 `
 
 export const Action = styled.div`
@@ -21,7 +23,6 @@ export const Action = styled.div`
 
 export const item = styled.li`
   position: relative;
-  margin-right: 16px;
 
   > img {
     border: 2px solid ${cores.branca};
