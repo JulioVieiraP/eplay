@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { cores } from '../../styles/Variaveis'
+import { colors } from '../../styles/Colors'
 
 export const Container = styled.div`
   border-radius: 8px;
-  background-color: ${cores.cinza};
+  background-color: ${colors.gray};
   padding: 24px;
   margin-bottom: 40px;
 
@@ -11,7 +11,7 @@ export const Container = styled.div`
   h3 {
     font-weight: bold;
     font-size: 18px;
-    color: ${cores.branca};
+    color: ${colors.white};
     margin-bottom: 24px;
   }
 

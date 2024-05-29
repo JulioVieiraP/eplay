@@ -5,7 +5,7 @@ import { GalleryItem } from '../../Pages/Home'
 
 import play from '../../assets/images/play.png'
 import zoom from '../../assets/images/zoom.png'
-import fechar from '../../assets/images/fechar.png'
+import closeIcon from '../../assets/images/fechar.png'
 
 import * as S from './style'
 
@@ -74,7 +74,7 @@ const Gallery = ({ defaultCover, name, items }: Props) => {
           <S.ModalContent className="Container">
             <header>
               <h4>{name}</h4>
-              <img onClick={closeModal} src={fechar} alt="" />
+              <img onClick={closeModal} src={closeIcon} alt="" />
             </header>
             {modal.type === 'image' ? (
               <img src={modal.url} alt="" />

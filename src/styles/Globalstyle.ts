@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { cores } from './Variaveis'
+import { colors } from './Colors'
 export const breakpoints = {
   tablet: '768px',
   desktop: '1024px'
@@ -17,8 +17,8 @@ const GlobalCss = createGlobalStyle`
   }
   body{
     padding-top: 40px;
-    background-color: ${cores.preta};
-    color: ${cores.branca};
+    background-color: ${colors.black};
+    color: ${colors.white};
   }
 
   .Container{

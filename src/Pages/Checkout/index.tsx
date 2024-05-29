@@ -5,8 +5,8 @@ import * as Yup from 'yup'
 import Button from '../../Components/Button'
 import Card from '../../Components/Card'
 
-import boleto from '../../assets/images/boleto.png'
-import cartao from '../../assets/images/cartao.png'
+import barCode from '../../assets/images/boleto.png'
+import creditCard from '../../assets/images/cartao.png'
 
 import { usePurchaseMutation } from '../../services/api'
 
@@ -252,14 +252,14 @@ const Checkout = () => {
                 isActive={!payWithCard}
                 onClick={() => setPayWithCard(false)}
               >
-                <img src={boleto} alt="Boleto" />
+                <img src={barCode} alt="Boleto" />
                 Boleto bancário
               </S.TabButton>
               <S.TabButton
                 isActive={payWithCard}
                 onClick={() => setPayWithCard(true)}
               >
-                <img src={cartao} alt="Cartão" />
+                <img src={creditCard} alt="Cartão" />
                 Cartão de crédito
               </S.TabButton>
               <div className="margin-top">
