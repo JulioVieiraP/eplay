@@ -1,11 +1,13 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import Button from '../Button'
-import * as S from './styles'
-import Tag from '../Tag'
 import { useDispatch, useSelector } from 'react-redux'
-import { close, remove } from '../../redux/reducers/cart'
+
+import Button from '../Button'
+import Tag from '../Tag'
+
 import { RootReducer } from '../../redux/store'
+import { close, remove } from '../../redux/reducers/cart'
 import { formataPreco } from '../ProductsList'
+
+import * as S from './styles'
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -24,6 +26,7 @@ const Cart = () => {
 
   const getTotalPrice = () => {
     return items.reduce((totalPrice, item) => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       return (totalPrice += item.prices.current!)
     }, 0)
   }
