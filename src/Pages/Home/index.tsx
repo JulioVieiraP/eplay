@@ -36,29 +36,23 @@ const Home = () => {
   const { data: onSaleGames, isLoading: isOnSaleLoading } = useGetOnSaleQuery()
   const { data: soonGames, isLoading: isSoonLoading } = useGetSoonQuery()
 
-  if (isOnSaleLoading || isSoonLoading) {
-    return <h4>carregando...</h4>
-  }
-
   return (
     <>
       <Banner />
-      {onSaleGames && (
-        <ProductsList
-          games={onSaleGames}
-          title="Promoções"
-          background="gray"
-          id="on-Sale"
-        />
-      )}
-      {soonGames && (
-        <ProductsList
-          games={soonGames}
-          title="Em breve"
-          background="black"
-          id="coming-soon"
-        />
-      )}
+      <ProductsList
+        games={onSaleGames}
+        title="Promoções"
+        background="gray"
+        id="on-Sale"
+        isLoading={isOnSaleLoading}
+      />
+      <ProductsList
+        games={soonGames}
+        title="Em breve"
+        background="black"
+        id="coming-soon"
+        isLoading={isSoonLoading}
+      />
     </>
   )
 }
