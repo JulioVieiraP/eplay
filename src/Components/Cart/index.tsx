@@ -37,32 +37,41 @@ const Cart = () => {
     <S.CartContainer>
       <S.Overlay onClick={CloseCart} />
       <S.Sidebar>
-        <ul>
-          {items.map((item) => (
-            <S.CartItem key={item.id}>
-              <img src={item.media.thumbnail} alt={item.name} />
-              <div>
-                <h3>{item.name}</h3>
-                <Tag>{item.details.category}</Tag>
-                <Tag>{item.details.system}</Tag>
-                <span>{parseToBrl(item.prices.current)}</span>
-              </div>
-              <button type="button" onClick={() => removeItem(item.id)} />
-            </S.CartItem>
-          ))}
-        </ul>
-        <S.Quantity>{items.length} jogo(s) no carrinho</S.Quantity>
-        <S.Prices>
-          Total de {parseToBrl(getTotalPrice(items))}
-          <span>Em até 6x sem juros</span>
-        </S.Prices>
-        <Button
-          onClick={goToCheckout}
-          title="clique aui para continuar com a compra"
-          type="button"
-        >
-          Continuar com a compra
-        </Button>
+        {items.length > 0 ? (
+          <>
+            <ul>
+              {items.map((item) => (
+                <S.CartItem key={item.id}>
+                  <img src={item.media.thumbnail} alt={item.name} />
+                  <div>
+                    <h3>{item.name}</h3>
+                    <Tag>{item.details.category}</Tag>
+                    <Tag>{item.details.system}</Tag>
+                    <span>{parseToBrl(item.prices.current)}</span>
+                  </div>
+                  <button type="button" onClick={() => removeItem(item.id)} />
+                </S.CartItem>
+              ))}
+            </ul>
+            <S.Quantity>{items.length} jogo(s) no carrinho</S.Quantity>
+            <S.Prices>
+              Total de {parseToBrl(getTotalPrice(items))}
+              <span>Em até 6x sem juros</span>
+            </S.Prices>
+            <Button
+              onClick={goToCheckout}
+              title="clique aui para continuar com a compra"
+              type="button"
+            >
+              Continuar com a compra
+            </Button>
+          </>
+        ) : (
+          <p className="empty-text">
+            o carrinho está vazio, adicione pelo menos um produto para continuar
+            com a compra
+          </p>
+        )}
       </S.Sidebar>
     </S.CartContainer>
   )

@@ -1,4 +1,3 @@
-import { Game } from '../../Pages/Home'
 import { parseToBrl } from '../../utils'
 import Loader from '../Loader'
 import Product from '../Product'
